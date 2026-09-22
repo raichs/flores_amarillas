@@ -2019,31 +2019,20 @@ h1 {
       </div>
     </div>
 
-    <audio id="bg-music" src="https://raw.githubusercontent.com/raichs/flores_amarillas/main/Wisin%20%26%20Yandel%20-%20Gracias%20A%20Ti%20Letra.mp3" loop preload="auto"></audio>
+    <audio id="bg-music" loop>
+      <source src="https://raw.githubusercontent.com/raichs/flores_amarillas/main/Wisin%20%26%20Yandel%20-%20Gracias%20A%20Ti%20Letra.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
       const bgMusic = document.getElementById('bg-music');
 
-      function playMusic(){
-        bgMusic.play().catch(() => {});
-      }
+      document.body.addEventListener('click', () => {
+        bgMusic.play();
+      }, { once: true });
 
-      // Intentar reproducir automáticamente al cargar la página
-      playMusic();
-
-      // Si el navegador bloquea el autoplay, sonará con el primer toque/clic/tecla
-      // en cualquier parte de la página, sin necesidad de un botón visible
-      const resumeOnInteraction = () => {
-        playMusic();
-        window.removeEventListener('click', resumeOnInteraction);
-        window.removeEventListener('touchstart', resumeOnInteraction);
-        window.removeEventListener('keydown', resumeOnInteraction);
-        window.removeEventListener('scroll', resumeOnInteraction);
-      };
-      window.addEventListener('click', resumeOnInteraction, { once:true });
-      window.addEventListener('touchstart', resumeOnInteraction, { once:true });
-      window.addEventListener('keydown', resumeOnInteraction, { once:true });
-      window.addEventListener('scroll', resumeOnInteraction, { once:true });
+      document.body.addEventListener('touchstart', () => {
+        bgMusic.play();
+      }, { once: true });
     </script>
   </body>
 </html>
